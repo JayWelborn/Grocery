@@ -89,7 +89,9 @@ def fix_master_list():
 
         item_index = checked_list.index(item)
 
-        if item_index == 0 and len(checked_list) > 1:  # The following tells how to tell where the first item on the list should go
+        # The following tells how to tell where the first item on the list should go
+
+        if item_index == 0 and len(checked_list) > 1:
 
             next_item = checked_list[item_index + 1]
 
