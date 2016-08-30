@@ -119,16 +119,16 @@ def fix_master_list(list1, list2):
                 x = list2.index(previous_item)
                 list2.insert(x + 1, item)
 
-    target = open("listsave.txt", 'w')
-    target.writelines("%s\n" % item for item in list2)
+    with target as open("listsave.txt", 'w'):
+        target.writelines("%s\n" % item for item in list2)
 
 
 if __name__ == '__main__':
     todays_list = []
     todays_sorted_list = []
     checked_list = []
-    read_list = open('listsave.txt', 'r+')
-    master_list = [x.strip('\n') for x in read_list.readlines()]
+    with read_list as open('listsave.txt', 'r+'):
+        master_list = [x.strip('\n') for x in read_list.readlines()]
 
     get_items(todays_list)
 
