@@ -127,7 +127,7 @@ if __name__ == '__main__':
     todays_list = []
     todays_sorted_list = []
     checked_list = []
-    with read_list as open('listsave.txt', 'r+'):
+    with read_list as open('listsave.txt', 'w+'):
         master_list = [x.strip('\n') for x in read_list.readlines()]
 
     get_items(todays_list)
