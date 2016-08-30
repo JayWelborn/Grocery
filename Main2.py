@@ -1,3 +1,5 @@
+import os
+
 class Grocery(object):
     def __init__(self, name, position):
         self.name = name
@@ -119,24 +121,31 @@ def fix_master_list(list1, list2):
                 x = list2.index(previous_item)
                 list2.insert(x + 1, item)
 
-    target =  open("listsave.txt", 'w')
+    target = open("listsave.txt", 'w')
     target.writelines("%s\n" % item for item in list2)
 
 
 if __name__ == '__main__':
-    todays_list = []
-    todays_sorted_list = []
-    checked_list = []
-    read_list = open('listsave.txt', 'w+')
-    master_list = [x.strip('\n') for x in read_list.readlines()]
 
-    get_items(todays_list)
+	todays_list = []
+	todays_sorted_list = []
+	checked_list = []
+	if os.path.isfile('listsave.txt'):
+		read_list = open('listsave.txt', 'r')
+		master_list = [x.strip('\n') for x in read_list.readlines()]
+	else:
+		read_list = open('listsave.txt', 'w+')
+		master_list = [x.strip('\n') for x in read_list.readlines()]
+	print "master_list is: "
+	print master_list
 
-    sort_todays_items(todays_list, todays_sorted_list, master_list)
+	get_items(todays_list)
 
-    check_items(todays_sorted_list, checked_list)
+	sort_todays_items(todays_list, todays_sorted_list, master_list)
 
-    fix_master_list(checked_list, master_list)
+	check_items(todays_sorted_list, checked_list)
 
-    print "master list is"
-    print master_list
+	fix_master_list(checked_list, master_list)
+
+	print "master list is"
+	print master_list
